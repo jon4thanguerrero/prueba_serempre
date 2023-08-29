@@ -2,16 +2,14 @@
 
 namespace App\Providers;
 
-use App\Libraries\Responders\Contracts\JsonApiResponseInterface;
-use App\Libraries\Responders\JsonApiResponse;
 use App\UseCases\Contracts\User\UserUseCaseInterface;
 use App\UseCases\User\UserUseCase;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class UseCaseServiceProvider extends ServiceProvider
 {
     protected $classes = [
-        JsonApiResponseInterface::class => JsonApiResponse::class,
+        UserUseCaseInterface::class => UserUseCase::class,
     ];
 
     /**
@@ -27,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      *
      * @return void
      */
