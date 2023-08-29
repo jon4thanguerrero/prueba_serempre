@@ -3,11 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class UserFactory extends Factory
+class ClientFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,10 +17,12 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $cityID = [1, 2, 3];
+
         return [
+            'code' => (string) mt_rand(pow(10, 0), pow(10, 9) - 1),
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'password' => '$2y$10$Qv/8gdWzSfqvK0xw.JIq0eUUod1AHMw4wr0mKGTNT57wpXUR99CwK', // 12345
+            'city_id' => Arr::random($cityID),
         ];
     }
 }
