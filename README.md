@@ -26,6 +26,11 @@
     ```
     https://laravel.com/docs/9.x/installation
     ```
+   
+4. Instalar fractal
+    ```
+   https://fractal.thephpleague.com/installation/
+   ```
 
 4. Ubicados en la raiz del proyecto ejecutar el siguiente comando **composer install** instalarà los paquetes(dependencias) que requiere el proyecto definidos en el archivo *composer.json*
 
@@ -45,3 +50,31 @@
     ```
     php artisan serve --host=127.0.0.1 --port=8080
     ```
+   
+8. El alcance de esta prueba pude realizar los 4 primeros puntos con solo la operacion de registro en la cual se hace la
+   del Job y el proceso de envio de correo
+   ```
+   curl --location --request POST 'http://127.0.0.1:8000/api/users' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "name": "Carlos cortez",
+   "password": "qweqr",
+   "email": "prueba@gmail.com"
+   }'
+   ```
+
+## Tecnologias usadas
+
+- [Mailtrap](https://mailtrap.io/)
+- [fractal](https://fractal.thephpleague.com/)
+
+## Consideraciones
+
+- La version de PHP sobre la cual se realizò esta prueba es la versiòn 8
+- Al crear los nuevos directorios y archivos se procura seguir con el planteamiento de clean architecture
+- Como objeto que pasa la informaciòn entre una capa y otra se creo un DTO
+- Se implementa el patron repository para las operaciones con la BD
+- Se tiene en cuenta para el desarrollo de esta prueba los planteamientos del principio SOLID
+- Se implementa el marco de git flow para trabajar con el repositorio y la creaciòn de las ramas
+- La respuesta(JSON) generadas por el servicio que se expone cumple con lo indicado por el estandar [JsonAPI](https://jsonapi.org/)  
+
