@@ -19,7 +19,7 @@ class UserUseCase implements UserUseCaseInterface
     ) {
     }
 
-    public function handle(UserDTO $userDTO): User
+    public function register(UserDTO $userDTO): User
     {
         $userRegistered = $this->userRepository->save($userDTO);
 
@@ -28,9 +28,6 @@ class UserUseCase implements UserUseCaseInterface
         }
 
         $user = $this->userRepository->getByEmail($userDTO->getEmail());
-
-        // Job for the process send email
-        SendEmailUserRegisteredJob::dispatch($user);
 
         return $user;
     }

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\UseCases\Client\ImportClientsUseCase;
+use App\UseCases\Contracts\Client\ImportClientsUseCaseInterface;
 use App\UseCases\Contracts\User\UserUseCaseInterface;
 use App\UseCases\User\UserUseCase;
 use Illuminate\Support\ServiceProvider;
@@ -9,7 +11,8 @@ use Illuminate\Support\ServiceProvider;
 class UseCaseServiceProvider extends ServiceProvider
 {
     protected $classes = [
-        UserUseCaseInterface::class => UserUseCase::class,
+        UserUseCaseInterface::class          => UserUseCase::class,
+        ImportClientsUseCaseInterface::class => ImportClientsUseCase::class,
     ];
 
     /**

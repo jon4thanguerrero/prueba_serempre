@@ -16,13 +16,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 
 Route::group(['prefix' => '/users'], function () {
     Route::post('/', [
+        'uses' => RegisterController::class,
+    ]);
+
+    Route::get('/', [
+        'uses' => RegisterController::class,
+    ]);
+
+    Route::delete('/{id}', [
+        'uses' => RegisterController::class,
+    ]);
+
+    Route::put('/{id}', [
         'uses' => RegisterController::class,
     ]);
 });

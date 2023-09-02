@@ -7,7 +7,9 @@ use App\Http\Transformers\User\UserTransformer;
 use App\Libraries\Responders\Contracts\JsonApiResponseInterface;
 use App\Libraries\Responders\HttpObject;
 use App\UseCases\Contracts\User\UserUseCaseInterface;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -24,7 +26,7 @@ class RegisterController
     ) {
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
@@ -40,7 +42,7 @@ class RegisterController
             app('db')->beginTransaction();
             $userDTO = $this->generateUserDTO($request->all());
 
-            $user = $this->userUseCase->handle($userDTO);
+            $user = $this->userUseCase->register($userDTO);
 
             $this->httpObject->setItem($user);
 
@@ -54,6 +56,8 @@ class RegisterController
 
         } catch (Throwable $th) {
             app('db')->rollback();
+
+            Log::error($th->getMessage(), $th->getTrace());
             
             return $this->jsonApiResponse->responseErrorException($th);
         }

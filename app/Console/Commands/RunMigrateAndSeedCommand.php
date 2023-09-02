@@ -33,15 +33,15 @@ class RunMigrateAndSeedCommand extends Command
 
         // Execute seeders
         Artisan::call('db:seed', [
-            '--class' => 'UserSeeder', // Nombre del primer seeder
+            '--class' => 'UserSeeder',
         ]);
 
         Artisan::call('db:seed', [
-            '--class' => 'CitySeeder', // Nombre del segundo seeder
+            '--class' => 'CitySeeder',
         ]);
 
         Artisan::call('db:seed', [
-            '--class' => 'ClientSeeder', // Nombre del segundo seeder
+            '--class' => 'ClientSeeder',
         ]);
         
         return Command::SUCCESS;
