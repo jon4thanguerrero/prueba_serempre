@@ -20,17 +20,17 @@ class CitySeeder extends Seeder
             [
                 'id' => 1,
                 'code' => Str::random(10),
-                'name' => fake()->city()
+                'name' => 'Bogota'
             ],
             [
                 'id' => 2,
                 'code' => Str::random(10),
-                'name' => fake()->city()
+                'name' => 'Medellin'
             ],
             [
                 'id' => 3,
                 'code' => Str::random(10),
-                'name' => fake()->city()
+                'name' => 'Villavicencio'
             ],
         ]);
     }
