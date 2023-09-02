@@ -10,5 +10,5 @@ use App\Models\User;
  */
 interface UserUseCaseInterface
 {
-    public function handle(UserDTO $userDTO): User;
+    public function register(UserDTO $userDTO): User;
 }

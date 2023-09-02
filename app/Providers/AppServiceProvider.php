@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Libraries\Responders\Contracts\JsonApiResponseInterface;
 use App\Libraries\Responders\JsonApiResponse;
-use App\UseCases\Contracts\User\UserUseCaseInterface;
-use App\UseCases\User\UserUseCase;
+use App\Models\User;
+use App\Observers\UserObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // model observer
+        User::observe(UserObserver::class);
     }
 }
