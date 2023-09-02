@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Client\ClientImportExportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => '/clients'], function () {
+    Route::get('/import', [
+        'uses' => ClientImportExportController::class.'@index',
+    ]);
+
+    Route::post('/import', [
+        'uses' => ClientImportExportController::class.'@import',
+        'as' => 'import-clients'
+    ]);
+
+    Route::get('/export', [
+        'uses' => ClientImportExportController::class.'@export',
+        'as' => 'export-clients'
+    ]);
 });
