@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\City\CityRepository;
+use App\Repositories\Client\ClientRepository;
+use App\Repositories\Contracts\City\CityRepositoryInterface;
+use App\Repositories\Contracts\Client\ClientRepositoryInterface;
 use App\Repositories\Contracts\User\UserRepositoryInterface;
 use App\Repositories\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
@@ -10,6 +14,8 @@ class RepositoryServiceProvider extends ServiceProvider
 {
     protected $classes = [
         UserRepositoryInterface::class => UserRepository::class,
+        CityRepositoryInterface::class => CityRepository::class,
+        ClientRepositoryInterface::class => ClientRepository::class,
     ];
 
     /**
