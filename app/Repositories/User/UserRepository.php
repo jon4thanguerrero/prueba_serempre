@@ -20,9 +20,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function getByEmail(string $email): User
     {
-        $user = User::where('email', $email)->first();
-
-        return $user;
+        return User::where('email', $email)->first();
     }
 
     public function update(User $user): bool
