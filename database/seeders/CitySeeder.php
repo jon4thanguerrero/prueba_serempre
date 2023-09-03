@@ -32,6 +32,41 @@ class CitySeeder extends Seeder
                 'code' => Str::random(10),
                 'name' => 'Villavicencio'
             ],
+            [
+                'id' => 4,
+                'code' => Str::random(10),
+                'name' => 'Cali'
+            ],
+            [
+                'id' => 5,
+                'code' => Str::random(10),
+                'name' => 'Barranquilla'
+            ],
+            [
+                'id' => 6,
+                'code' => Str::random(10),
+                'name' => 'Pereira'
+            ],
+            [
+                'id' => 7,
+                'code' => Str::random(10),
+                'name' => 'Bucaramanga'
+            ],
+            [
+                'id' => 8,
+                'code' => Str::random(10),
+                'name' => 'Manizales'
+            ],
+            [
+                'id' => 9,
+                'code' => Str::random(10),
+                'name' => 'Pasto'
+            ],
+            [
+                'id' => 10,
+                'code' => Str::random(10),
+                'name' => 'Neiva'
+            ],
         ]);
     }
 }
