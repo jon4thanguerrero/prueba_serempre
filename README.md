@@ -29,30 +29,37 @@
    
 4. Instalar fractal
     ```
-   https://fractal.thephpleague.com/installation/
-   ```
+    https://fractal.thephpleague.com/installation/
+    ```
 
-4. Ubicados en la raiz del proyecto ejecutar el siguiente comando **composer install** instalarà los paquetes(dependencias) que requiere el proyecto definidos en el archivo *composer.json*
+5. Instalar paquete para procesar archivos de excel
+    ``` 
+    https://docs.laravel-excel.com/3.1/getting-started/installation.html
+    ```
 
-5. Una vez realizados los pasos anteriores de debe crear una base de datos local para esta prueba se utiliza *Mysql* que se llame **serempre** agregando los datos de conexiòn en el archivo .env, en las siguientes variables:
+6. Ubicados en la raiz del proyecto ejecutar el siguiente comando **composer install** instalarà los paquetes(dependencias) que requiere el proyecto definidos en el archivo *composer.json*
+
+
+7. Una vez realizados los pasos anteriores de debe crear una base de datos local para esta prueba se utiliza *Mysql* que se llame **serempre** agregando los datos de conexiòn en el archivo .env, en las siguientes variables:
     ```
     *DB_DATABASE=serempre
     *DB_USERNAME=
     *DB_PASSWORD=
     ```
 
-6. Ejecutar el siguiente comando para realizar las migraciones y seeders en la BD 
+8. Ejecutar el siguiente comando para realizar las migraciones y seeders en la BD 
     ```
     php artisan db:run-migrate-and-seeder
     ```
 
-7. Para iniciar el servidor y correr el proyecto ejecutar el siguiente comando
+9. Para iniciar el servidor y correr el proyecto ejecutar el siguiente comando
     ```
     php artisan serve --host=127.0.0.1 --port=8080
     ```
    
-8. El alcance de esta prueba pude realizar los 4 primeros puntos con solo la operacion de registro en la cual se hace la
-   del Job y el proceso de envio de correo
+10. Proceso de registro de un usuario adicional una vez se realiza el registro se implementa un observador para
+   el envio de un email.
+
    ```
    curl --location --request POST 'http://127.0.0.1:8000/api/users' \
    --header 'Content-Type: application/json' \
@@ -62,6 +69,35 @@
    "email": "prueba@gmail.com"
    }'
    ```
+
+11. Ejecutar los demas servicios del CRUD
+
+    **Read**
+    ```
+    curl --location --request GET 'http://127.0.0.1:8000/api/users/9'
+    ```
+
+    **Update**
+    ```
+    curl --location --request PUT 'http://127.0.0.1:8000/api/users/9' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "name": "Jorge Mendez",
+        "password": "a.df7392",
+        "email": "jorgem@gmail.com"
+    }'
+    ```
+
+    **Delete**
+    ```
+    curl --location --request DELETE 'http://127.0.0.1:8000/api/users/10'
+    ```
+    
+12. Vista para importar archivo con el listado de clientes
+    ```
+    http://127.0.0.1:8000/clients/import
+    ```
+    archivo con el listado de clientes: https://docs.google.com/spreadsheets/d/16cCPCNXdaHAsOLZwBSGFfGRhK8S9yts2JdL1bHTa9oQ/edit?usp=sharing
 
 ## Tecnologias usadas
 
