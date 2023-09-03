@@ -5,6 +5,7 @@ namespace App\Repositories\User;
 use App\DataTransferObject\UserDTO;
 use App\Models\User;
 use App\Repositories\Contracts\User\UserRepositoryInterface;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -13,7 +14,7 @@ class UserRepository implements UserRepositoryInterface
         $user = new User();
         $user->name = $userDTO->getName();
         $user->email = $userDTO->getEmail();
-        $user->password = $userDTO->getPassword();
+        $user->password =  Hash::make($userDTO->getPassword());
 
         return $user->save();;
     }

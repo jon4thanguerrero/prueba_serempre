@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\City\CityController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\User\DeleteUserController;
 use App\Http\Controllers\User\GetUserController;
@@ -48,5 +49,12 @@ Route::group(['prefix' => '/users'], function () {
 Route::group(['prefix' => '/clients'], function () {
     Route::get('/', [
         'uses' => ClientController::class,
+    ]);
+});
+
+
+Route::group(['prefix' => '/cities'], function () {
+    Route::get('/', [
+        'uses' => CityController::class,
     ]);
 });
