@@ -11,4 +11,10 @@ use App\Models\User;
 interface UserUseCaseInterface
 {
     public function register(UserDTO $userDTO): User;
+
+    public function delete(int $userID): bool;
+
+    public function getRegister(int $userID): User;
+
+    public function update(UserDTO $userDTO): User;
 }

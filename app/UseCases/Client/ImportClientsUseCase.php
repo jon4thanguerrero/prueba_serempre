@@ -25,8 +25,10 @@ class ImportClientsUseCase implements ImportClientsUseCaseInterface
      */
     public function handle(UploadedFile $file): void
     {
+        // Service that processes the information in excel and returns an array.
         $clientData = $this->importClientExcelService->handle($file);
 
+        // Query to get the cities registered in BD
         $cities = $this->cityRepository->get();
 
         $clients = [];
@@ -48,6 +50,9 @@ class ImportClientsUseCase implements ImportClientsUseCaseInterface
         }
     }
 
+    /**
+     * Method to get the city ID coming from the imported file
+     */
     private function getCityID(Collection $cities, string $cityName): int
     {
         $city = $cities->first(function ($city) use ($cityName) {

@@ -34,14 +34,18 @@ class ClientImportExportController extends Controller
         }
 
         try {
-
             $file = $request->file('file_excel');
+
+            app('db')->beginTransaction();
 
             $this->importClientsUseCase->handle($file);
 
-            return View::make('clients.import-clients', ['message' => 'Registro exitoso', 'success' => 1]);
+            app('db')->commit();
 
+            return View::make('clients.import-clients', ['message' => 'Registro exitoso', 'success' => 1]);
         } catch (Throwable $th) {
+            app('db')->rollback();
+
             Log::error($th->getMessage(), $th->getTrace());
 
             return View::make('clients.import-clients', ['message' => 'Error en el proceso de importacion de clientes', 'success' => 0]);

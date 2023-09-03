@@ -4,7 +4,7 @@ use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\User\DeleteUserController;
 use App\Http\Controllers\User\GetUserController;
 use App\Http\Controllers\User\RegisterController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\User\UpdateUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,16 +31,16 @@ Route::group(['prefix' => '/users'], function () {
         'uses' => RegisterController::class,
     ]);
 
-    Route::get('/', [
-        'uses' => RegisterController::class,
+    Route::get('/{id}', [
+        'uses' => GetUserController::class,
     ]);
 
     Route::delete('/{id}', [
-        'uses' => RegisterController::class,
+        'uses' => DeleteUserController::class,
     ]);
 
     Route::put('/{id}', [
-        'uses' => RegisterController::class,
+        'uses' => UpdateUserController::class,
     ]);
 });
 
