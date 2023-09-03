@@ -4,8 +4,11 @@ namespace App\Libraries\Responders;
 
 use App\Libraries\Responders\Contracts\JsonApiResponseInterface;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\MessageBag;
 use League\Fractal\Manager;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\Serializer\JsonApiSerializer;
 use League\Fractal\TransformerAbstract;
@@ -72,6 +75,37 @@ class JsonApiResponse implements JsonApiResponseInterface
     public function respond(HttpObject $httpObject): JsonResponse
     {
         return response()->json($httpObject->getBody(), $httpObject->getStatus(), $httpObject->getHeaders());
+    }
+
+    public function respondWithCollection(
+        HttpObject $httpObject,
+        TransformerAbstract $callback,
+        string $resource,
+        array $includes = []
+    ): JsonResponse {
+        $collection = $httpObject->getCollection();
+        
+        if (is_array($collection) || $collection instanceof \Illuminate\Support\Collection) {
+            $totalItems = count($collection);
+            $collection = new LengthAwarePaginator($httpObject->getCollection(), $totalItems, $totalItems ?: 50);
+        }
+        
+        $resource = new Collection($collection, $callback, $resource);
+        
+        if (! empty($httpObject->getMetadata())) {
+            $resource->setMeta($httpObject->getMetadata());
+        }
+        
+        $resource->setPaginator(new IlluminatePaginatorAdapter($collection));
+
+        if (! empty($includes)) {
+            $this->fractal->parseIncludes($includes);
+        }
+
+        $rootScope = $this->fractal->createData($resource);
+        $httpObject->setBody($rootScope->toArray());
+
+        return $this->respond($httpObject);
     }
 
     public function responseErrorException(Throwable $th): JsonResponse
