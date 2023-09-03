@@ -24,4 +24,11 @@ interface JsonApiResponseInterface
     public function respond(HttpObject $httpObject): JsonResponse;
 
     public function responseErrorException(Throwable $th): JsonResponse;
+
+    public function respondWithCollection(
+        HttpObject $httpObject,
+        TransformerAbstract $callback,
+        string $resource,
+        array $includes = []
+    ): JsonResponse;
 }

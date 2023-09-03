@@ -16,6 +16,13 @@ class HttpObject
 
     private int $status = 200;
 
+    private array $metadata = [];
+
+    /**
+     * @var array|\Illuminate\Support\Collection|Collection $collection
+     */
+    private $collection;
+
     public function getItem(): Model|array|Item
     {
         return $this->item;
@@ -63,6 +70,35 @@ class HttpObject
     public function setHeaders(array $headers): HttpObject
     {
         $this->headers = $headers;
+        return $this;
+    }
+
+    /**
+     * @param array|\Illuminate\Support\Collection|Collection|\Illuminate\Pagination\LengthAwarePaginator|\Illuminate\Contracts\Pagination\LengthAwarePaginator $collection
+     * @return HttpObject
+     */
+    public function setCollection($collection): HttpObject
+    {
+        $this->collection = $collection;
+        return $this;
+    }
+
+    /**
+     * @return array|\Illuminate\Support\Collection|Collection
+     */
+    public function getCollection()
+    {
+        return $this->collection;
+    }
+
+    public function getMetadata(): array
+    {
+        return $this->metadata;
+    }
+
+    public function setMetadata(array $metadata): HttpObject
+    {
+        $this->metadata = $metadata;
         return $this;
     }
 }

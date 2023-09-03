@@ -32,4 +32,9 @@ class UserRepository implements UserRepositoryInterface
     {
         return $user->delete();
     }
+
+    public function findByID(int $userID): User|null
+    {
+        return User::where('id', $userID)->first();
+    }
 }
