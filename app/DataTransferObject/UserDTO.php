@@ -10,6 +10,7 @@ class UserDTO
     private string $name;
     private string $email;
     private string $password;
+    private null|int $id;
 
     public function setName(string $name) : self
     {
@@ -42,5 +43,17 @@ class UserDTO
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function setID(?int $userID): self
+    {
+        $this->id = $userID;
+
+        return $this;
+    }
+
+    public function getID(): null|int
+    {
+        return $this->id;
     }
 }
