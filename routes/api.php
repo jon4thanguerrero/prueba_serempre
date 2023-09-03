@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\User\DeleteUserController;
 use App\Http\Controllers\User\GetUserController;
 use App\Http\Controllers\User\RegisterController;
@@ -22,7 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+/**
+ * users CRUD
+ */
 Route::group(['prefix' => '/users'], function () {
     Route::post('/', [
         'uses' => RegisterController::class,
@@ -38,5 +41,12 @@ Route::group(['prefix' => '/users'], function () {
 
     Route::put('/{id}', [
         'uses' => UpdateUserController::class,
+    ]);
+});
+
+
+Route::group(['prefix' => '/clients'], function () {
+    Route::get('/', [
+        'uses' => ClientController::class,
     ]);
 });

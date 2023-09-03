@@ -99,6 +99,14 @@
     ```
     archivo con el listado de clientes: https://docs.google.com/spreadsheets/d/16cCPCNXdaHAsOLZwBSGFfGRhK8S9yts2JdL1bHTa9oQ/edit?usp=sharing
 
+<<<<<<< HEAD
+13. Listar clientes de acuerdo a una Ciudad
+    ```
+    curl --location --request GET 'http://127.0.0.1:8000/api/clients?city=Bogota'
+    ```
+
+=======
+>>>>>>> de653d439efd3d5b1f207af8b9871cdf4eafeaf9
 ## Tecnologias usadas
 
 - [Mailtrap](https://mailtrap.io/)

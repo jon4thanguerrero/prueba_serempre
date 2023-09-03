@@ -24,7 +24,7 @@ class UpdateUserController
         
     }
 
-    public function __invoke(Request $request, int $userID)
+    public function __invoke(Request $request, int $userID): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
