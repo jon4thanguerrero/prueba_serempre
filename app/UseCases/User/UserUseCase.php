@@ -31,4 +31,50 @@ class UserUseCase implements UserUseCaseInterface
 
         return $user;
     }
+
+    public function delete(int $userID): bool
+    {
+        $user = $this->getUser($userID);
+
+        $deleted = $this->userRepository->delete($user);
+
+        if(!$deleted) {
+            throw new Exception(sprintf('No se elimino el registro con el ID %s', $userID));
+        }
+
+        return $deleted;
+    }
+
+    public function getRegister(int $userID): User
+    {
+        return $this->getUser($userID);
+    }
+
+    public function update(UserDTO $userDTO): User
+    {
+        $user = $this->getUser($userDTO->getID());
+
+        $user->name = $userDTO->getName();
+        $user->password = $userDTO->getPassword();
+        $user->email = $userDTO->getEmail();
+
+        $updated = $this->userRepository->update($user);
+
+        if(!$updated) {
+            throw new Exception(sprintf('No se actualizo el registro con el ID %s', $userDTO->getID()));
+        }
+
+        return $user;
+    }
+
+    private function getUser(int $userID): User
+    {
+        $user = $this->userRepository->findByID($userID);
+
+        if(empty($user)) {
+            throw new Exception(sprintf('No se encontro el usuario con el ID %s', $userID));
+        }
+
+        return $user;
+    }
 }
