@@ -328,6 +328,7 @@ puntos:
 
 - [Mailtrap](https://mailtrap.io/)
 - [fractal](https://fractal.thephpleague.com/)
+- [Laravel Excel](https://docs.laravel-excel.com/3.1/getting-started/installation.html)
 
 ## Consideraciones
 
