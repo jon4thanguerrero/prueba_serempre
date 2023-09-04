@@ -17,4 +17,6 @@ interface UserUseCaseInterface
     public function getRegister(int $userID): User;
 
     public function update(UserDTO $userDTO): User;
+
+    public function UpdateInfo(User $user, string $name): User;
 }

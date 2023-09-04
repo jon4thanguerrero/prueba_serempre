@@ -77,4 +77,17 @@ class UserUseCase implements UserUseCaseInterface
 
         return $user;
     }
+
+    public function UpdateInfo(User $user, string $name): User
+    {
+        $user->name = $name;
+
+        $updated = $this->userRepository->update($user);
+
+        if(!$updated) {
+            throw new Exception(sprintf('No se actualizo el registro con el ID %s', $user->id()));
+        }
+
+        return $user;
+    }
 }
