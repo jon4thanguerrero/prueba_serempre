@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\UseCases\Auth\AuthUserUseCase;
 use App\UseCases\Client\ExportClientsUseCase;
 use App\UseCases\Client\ImportClientsUseCase;
+use App\UseCases\Contracts\Auth\AuthUserUseCaseInterface;
 use App\UseCases\Contracts\Client\ExportClientsUseCaseInterface;
 use App\UseCases\Contracts\Client\ImportClientsUseCaseInterface;
 use App\UseCases\Contracts\User\UserUseCaseInterface;
@@ -16,6 +18,7 @@ class UseCaseServiceProvider extends ServiceProvider
         UserUseCaseInterface::class          => UserUseCase::class,
         ImportClientsUseCaseInterface::class => ImportClientsUseCase::class,
         ExportClientsUseCaseInterface::class => ExportClientsUseCase::class,
+        AuthUserUseCaseInterface::class      => AuthUserUseCase::class,   
     ];
 
     /**
