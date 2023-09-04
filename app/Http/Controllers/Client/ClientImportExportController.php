@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\UseCases\Contracts\Client\ExportClientsUseCaseInterface;
 use App\UseCases\Contracts\Client\ImportClientsUseCaseInterface;
 use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\Http\Request;
@@ -9,12 +10,14 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Throwable;
 
 class ClientImportExportController extends Controller
 {
     public function __construct(
-        private ImportClientsUseCaseInterface $importClientsUseCase
+        private ImportClientsUseCaseInterface $importClientsUseCase,
+        private ExportClientsUseCaseInterface $exportClientsUseCase
     ) {
     }
 
@@ -52,5 +55,10 @@ class ClientImportExportController extends Controller
         }
 
         return response()->json();
+    }
+
+    public function export(): BinaryFileResponse
+    {
+        return $this->exportClientsUseCase->handle();
     }
 }

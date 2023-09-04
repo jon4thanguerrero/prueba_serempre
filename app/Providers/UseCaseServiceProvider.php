@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\UseCases\Client\ExportClientsUseCase;
 use App\UseCases\Client\ImportClientsUseCase;
+use App\UseCases\Contracts\Client\ExportClientsUseCaseInterface;
 use App\UseCases\Contracts\Client\ImportClientsUseCaseInterface;
 use App\UseCases\Contracts\User\UserUseCaseInterface;
 use App\UseCases\User\UserUseCase;
@@ -13,6 +15,7 @@ class UseCaseServiceProvider extends ServiceProvider
     protected $classes = [
         UserUseCaseInterface::class          => UserUseCase::class,
         ImportClientsUseCaseInterface::class => ImportClientsUseCase::class,
+        ExportClientsUseCaseInterface::class => ExportClientsUseCase::class,
     ];
 
     /**

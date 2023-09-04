@@ -22,4 +22,11 @@ class ClientRepository implements ClientRepositoryInterface
 
         return $clients;
     }
+
+    public function getAll(): Collection
+    {
+        return Client::join('cities', 'clients.city_id', '=', 'cities.id')
+            ->select('clients.id', 'clients.code', 'clients.name', 'cities.name as city')
+            ->get();
+    }
 }
