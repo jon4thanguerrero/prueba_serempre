@@ -9,4 +9,6 @@ interface ClientRepositoryInterface
     public function saveFromImport(array $clients): bool;
 
     public function findByCityName(string $cityName): Collection;
+
+    public function getAll(): Collection;
 }

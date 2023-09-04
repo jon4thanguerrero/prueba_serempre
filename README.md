@@ -72,12 +72,12 @@
 
 11. Ejecutar los demas servicios del CRUD
 
-    **Read**
+    - **Read**
     ```
     curl --location --request GET 'http://127.0.0.1:8000/api/users/9'
     ```
 
-    **Update**
+    - **Update**
     ```
     curl --location --request PUT 'http://127.0.0.1:8000/api/users/9' \
     --header 'Content-Type: application/json' \
@@ -88,7 +88,7 @@
     }'
     ```
 
-    **Delete**
+    - **Delete**
     ```
     curl --location --request DELETE 'http://127.0.0.1:8000/api/users/10'
     ```
@@ -99,12 +99,18 @@
     ```
     
 13. Vista para importar archivo con el listado de clientes
+    - Importar archivo de cleintes
     ```
-    http://127.0.0.1:8000/clients/import
+    [GET] http://127.0.0.1:8000/clients/import
     ```
     archivo con el listado de clientes: https://docs.google.com/spreadsheets/d/16cCPCNXdaHAsOLZwBSGFfGRhK8S9yts2JdL1bHTa9oQ/edit?usp=sharing
 
-14. Listar clientes de acuerdo a una Ciudad
+    - Exportar el listado de clientes ejecutar en el navegador la siguiente URL
+    ```
+    [GET] http://127.0.0.1:8000/clients/export
+    ```
+
+14. Listar clientes de acuerdo a una ciudad
     ```
     curl --location --request GET 'http://127.0.0.1:8000/api/clients?city=Bogota'
     ```
@@ -122,5 +128,4 @@
 - Se implementa el patron repository para las operaciones con la BD
 - Se tiene en cuenta para el desarrollo de esta prueba los planteamientos del principio SOLID
 - Se implementa el marco de git flow para trabajar con el repositorio y la creaciòn de las ramas
-- La respuesta(JSON) generadas por el servicio que se expone cumple con lo indicado por el estandar [JsonAPI](https://jsonapi.org/)  
-
+- La respuesta(JSON) generadas por el servicio que se expone cumple con lo indicado por el estandar [JsonAPI](https://jsonapi.org/)
